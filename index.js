@@ -1,16 +1,31 @@
 for (var i = 0; i < (document.querySelectorAll(".drum").length); i ++ ) {
-
   document.querySelectorAll(".drum")[i].addEventListener("click", handleClick);
 }
 
+document.addEventListener("keydown", pressKey);
+
+// function for keypress //
+
+function pressKey() {
+  makeSound(event.key);
+}
+
+
+// function for handleClick //
+
 function handleClick() {
   var buttonInnerHtml = this.innerHTML;
+  makeSound(buttonInnerHtml);
+}
 
-  switch (buttonInnerHtml) {
+// Sound Making //
+
+function makeSound (key) {
+
+  switch (key) {
     case"w":
       var tom1 = new Audio ("sounds/tom-1.mp3");
       tom1.play();
-
     break;
 
     case"a":
@@ -43,7 +58,7 @@ function handleClick() {
       kick.play();
     break;
 
-    default: console.log(buttonInnerHtml);
+    default: console.log("Invalid Press/Click");
 
   }
 }
