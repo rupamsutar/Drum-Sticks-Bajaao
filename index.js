@@ -8,6 +8,7 @@ document.addEventListener("keydown", pressKey);
 
 function pressKey() {
   makeSound(event.key);
+  buttonAnimation(event.key)
 }
 
 
@@ -16,6 +17,7 @@ function pressKey() {
 function handleClick() {
   var buttonInnerHtml = this.innerHTML;
   makeSound(buttonInnerHtml);
+  buttonAnimation(buttonInnerHtml)
 }
 
 // Sound Making //
@@ -61,4 +63,14 @@ function makeSound (key) {
     default: console.log("Invalid Press/Click");
 
   }
+}
+
+
+function buttonAnimation(currentKey) {
+    var activeButton = document.querySelector("." + currentKey);
+    activeButton.classList.add("pressed");
+
+    setTimeout ( function() {
+      activeButton.classList.remove("pressed");
+    }, 100);
 }
